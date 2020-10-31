@@ -20,7 +20,7 @@ public class GetTripsRecordsByCity implements RequestHandler<HandlerRequest, Han
 		final String country = request.getPathParameters().get("country");
 		final String city = request.getQueryStringParameters().get("city");
 
-		context.getLogger().log("Searching for registered studies for " + country + " and city equals " + city);
+		context.getLogger().log("Searching for registered cities for " + country + " and city equals " + city);
 
 		final List<Trips> studies = this.repository.findByCity(country, city);
 

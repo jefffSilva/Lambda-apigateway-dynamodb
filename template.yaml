@@ -14,17 +14,17 @@ Globals:
 
 Resources:
 
-  CreatetripsRecordFunction:
+  CreateTripsRecordFunction:
     Type: AWS::Serverless::Function
     Properties:
      CodeUri: target/trips-datalake-1.0.0-SNAPSHOT-jar-with-dependencies.jar
-     Handler: br.com.iwe.handler.CreatetripsRecord::handleRequest
+     Handler: br.com.iwe.handler.CreateTripsRecord::handleRequest
      Runtime: java8
      Policies:
        - DynamoDBCrudPolicy:
            TableName: !Ref tripsTable     
      Events:
-       CreatetripsRecord:
+       CreateTripsRecord:
          Type: Api
          Properties:
            Path: /trips
@@ -49,17 +49,17 @@ Resources:
               - method.request.querystring.starts
               - method.request.querystring.ends
               
-  GettripsRecordsByCityFunction:
+  GetTripsRecordsByCityFunction:
     Type: AWS::Serverless::Function
     Properties:
      CodeUri: target/trips-datalake-1.0.0-SNAPSHOT-jar-with-dependencies.jar
-     Handler: br.com.iwe.handler.GettripsRecordsByCity::handleRequest
+     Handler: br.com.iwe.handler.GetTripsRecordsByCity::handleRequest
      Runtime: java8
      Policies:
        - DynamoDBCrudPolicy:
            TableName: !Ref tripsTable     
      Events:
-       GettripsRecordsByCity:
+       GetTripsRecordsByCity:
          Type: Api
          Properties:
            Path: /trips/{country}/findByCity
@@ -124,17 +124,17 @@ Resources:
 
 Outputs:
 
-    CreatetripsRecordFunction:
-      Description: "CreatetripsRecord Lambda Function ARN"
-      Value: !GetAtt CreatetripsRecordFunction.Arn
+    CreateTripsRecordFunction:
+      Description: "CreateTripsRecord Lambda Function ARN"
+      Value: !GetAtt CreateTripsRecordFunction.Arn
       
     GettripsRecordsByPeriodFunction:
       Description: "GettripsRecordsByPeriod Lambda Function ARN"
       Value: !GetAtt GettripsRecordsByPeriodFunction.Arn
       
-    GettripsRecordsByCityFunction:
-      Description: "GettripsRecordsByCity Lambda Function ARN"
-      Value: !GetAtt GettripsRecordsByCityFunction.Arn
+    GetTripsRecordsByCityFunction:
+      Description: "GetTripsRecordsByCity Lambda Function ARN"
+      Value: !GetAtt GetTripsRecordsByCityFunction.Arn
       
     GettripsRecordsByIsConsumedFunction:
       Description: "GettripsRecordsByIsConsumed Lambda Function ARN"
