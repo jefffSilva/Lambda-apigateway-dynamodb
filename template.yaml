@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-    trips-datalake
+    trips
     Rest API to manage a Data Lake of trips links
 Globals:
     Function:
@@ -17,7 +17,7 @@ Resources:
   CreateTripsRecordFunction:
     Type: AWS::Serverless::Function
     Properties:
-     CodeUri: target/trips-datalake-1.0.0-SNAPSHOT-jar-with-dependencies.jar
+     CodeUri: target/trips-1.0.0-SNAPSHOT-jar-with-dependencies.jar
      Handler: br.com.iwe.handler.CreateTripsRecord::handleRequest
      Runtime: java8
      Policies:
@@ -33,7 +33,7 @@ Resources:
   GettripsRecordsByPeriodFunction:
     Type: AWS::Serverless::Function
     Properties:
-     CodeUri: target/trips-datalake-1.0.0-SNAPSHOT-jar-with-dependencies.jar
+     CodeUri: target/trips-1.0.0-SNAPSHOT-jar-with-dependencies.jar
      Handler: br.com.iwe.handler.GettripsRecordsByPeriod::handleRequest
      Runtime: java8
      Policies:
@@ -52,7 +52,7 @@ Resources:
   GetTripsRecordsByCityFunction:
     Type: AWS::Serverless::Function
     Properties:
-     CodeUri: target/trips-datalake-1.0.0-SNAPSHOT-jar-with-dependencies.jar
+     CodeUri: target/trips-1.0.0-SNAPSHOT-jar-with-dependencies.jar
      Handler: br.com.iwe.handler.GetTripsRecordsByCity::handleRequest
      Runtime: java8
      Policies:
@@ -70,7 +70,7 @@ Resources:
   GettripsRecordsByIsConsumedFunction:
     Type: AWS::Serverless::Function
     Properties:
-     CodeUri: target/trips-datalake-1.0.0-SNAPSHOT-jar-with-dependencies.jar
+     CodeUri: target/trips-1.0.0-SNAPSHOT-jar-with-dependencies.jar
      Handler: br.com.iwe.handler.GettripsRecordsByIsConsumed::handleRequest
      Runtime: java8
      Policies:

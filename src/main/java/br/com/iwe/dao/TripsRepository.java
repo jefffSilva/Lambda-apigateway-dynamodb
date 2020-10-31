@@ -19,21 +19,15 @@ public class TripsRepository {
 		return trips;
 	}
 
-	public List<Trips> findByCity(final String country, final String isConsumed) {
+	public List<Trips> findByCity(final String country, final String city) {
 
 		final Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
 		eav.put(":val1", new AttributeValue().withS(country));
-		eav.put(":val2", new AttributeValue().withS(isConsumed));
-
-		final Map<String, String> expression = new HashMap<>();
-
-		// consumed is a reserver word in DynamoDB
-		expression.put("#consumed", "consumed");
+		eav.put(":val2", new AttributeValue().withS(city));
 
 		final DynamoDBQueryExpression<Trips> queryExpression = new DynamoDBQueryExpression<Trips>()
-				.withIndexName("consumedIndex").withConsistentRead(false)
-				.withKeyConditionExpression("country = :val1 and #consumed=:val2").withExpressionAttributeValues(eav)
-				.withExpressionAttributeNames(expression);
+				.withIndexName("cityIndex").withConsistentRead(false)
+				.withKeyConditionExpression("country = :val1 and city=:val2").withExpressionAttributeValues(eav);
 
 		final List<Trips> studies = mapper.query(Trips.class, queryExpression);
 
