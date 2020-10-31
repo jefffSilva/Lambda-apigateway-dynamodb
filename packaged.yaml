@@ -1,0 +1,81 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'work
+
+  Rest API to manage Ticket of travel
+
+  '
+Globals:
+  Function:
+    MemorySize: 512
+    Timeout: 20  
+
+Outputs:
+  CreateTripsRecordFunction:
+    Description: CreateTripsRecord Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - CreateTripsRecordFunction
+      - Arn
+  GetTripsRecordsByCountryFunction:
+    Description: GetTripsRecordsByCountry Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - GetTripsRecordsByCountryFunction
+      - Arn
+  
+  GetTripsRecordsByCityFunction:
+    Description: GetTripsRecordsByCity Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - GetTripsRecordsByCityFunction
+      - Arn
+
+Resources:
+  CreateTripsRecordFunction:
+    Properties:
+      CodeUri: s3://22cld-rm338220-renan-miranda/896a140ec24d1c84f917b82d6bdddd3f
+      Events:
+        CreateTripsRecord:
+          Properties:
+            Method: post
+            Path: /trips
+          Type: Api
+      Handler: br.com.iwe.handler.CreateTripsRecord::handleRequest
+      Runtime: java8
+    Type: AWS::Serverless::Function
+  
+  GetTripsRecordsByCountryFunction:
+    Properties:
+      CodeUri: s3://22cld-rm338220-renan-miranda/896a140ec24d1c84f917b82d6bdddd3f
+      Events:
+        GetTripsRecordsByCountry:
+          Properties:
+            Method: get
+            Path: /trips/{country}/findByCountry
+            RequestParameters:
+            - method.request.querystring.Country
+          Type: Api
+      Handler: br.com.iwe.handler.GetTripsRecordsByCountry::handleRequest
+      Runtime: java8
+    Type: AWS::Serverless::Function
+
+
+  GetTripsRecordsByCityFunction:
+    Properties:
+      CodeUri: s3://22cld-rm338220-renan-miranda/896a140ec24d1c84f917b82d6bdddd3f
+      Events:
+        GetTripsRecordsByCity:
+          Properties:
+            Method: get
+            Path: /trips/{country}/findByCity
+            RequestParameters:
+            - method.request.querystring.City
+          Type: Api
+      Handler: br.com.iwe.handler.GetTripsRecordsByCity::handleRequest
+      Runtime: java8
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31
+
+  
+
+

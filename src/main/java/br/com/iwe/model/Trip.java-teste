@@ -1,0 +1,64 @@
+package br.com.iwe.model;
+
+import java.util.Date;
+
+public class TripNew {
+	
+	//Atributos 
+	//Entidade Tripdeve conteros atributos:Country,City,Date(YYYY/MM/DD)e Reason.
+	
+	private String  country;
+	
+	private String  city;
+	
+	private Date  dateSchedule;
+
+	private String  Reason;
+
+	//Getters and Setters
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public Date getDateSchedule() {
+		return dateSchedule;
+	}
+
+	public void setDateSchedule(Date dateSchedule) {
+		this.dateSchedule = dateSchedule;
+	}
+
+	public String getReason() {
+		return Reason;
+	}
+
+	public void setReason(String reason) {
+		Reason = reason;
+	}
+
+	//Constructor 
+	public TripNew(String country, String city, Date dateSchedule, String reason) {
+	
+		this.country = country;
+		this.city = city;
+		this.dateSchedule = dateSchedule;
+		Reason = reason;
+	}
+	
+	public TripNew() {}
+	
+	
+}
+
