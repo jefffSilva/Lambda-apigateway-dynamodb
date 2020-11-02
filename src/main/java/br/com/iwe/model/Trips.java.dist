@@ -11,11 +11,11 @@ public class Trips {
 
 	@DynamoDBHashKey(attributeName = "country")
 	private String country;
-	@DynamoDBRangeKey(attributeName = "city")
-	private String city;
-
-	@DynamoDBIndexRangeKey(attributeName = "dateTimeCreation", localSecondaryIndexName = "dateTimeCreationIndex")
+	@DynamoDBRangeKey(attributeName = "dateTimeCreation")
 	private String dateTimeCreation;
+
+	@DynamoDBIndexRangeKey(attributeName = "city", localSecondaryIndexName = "cityIndex")
+	private String city;
 
 	@DynamoDBAttribute(attributeName = "url")
 	private String url;

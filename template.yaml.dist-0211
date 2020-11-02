@@ -101,14 +101,14 @@ Resources:
       KeySchema:
         - AttributeName: country
           KeyType: HASH
-        - AttributeName: city
+        - AttributeName: dateTimeCreation
           KeyType: RANGE
       LocalSecondaryIndexes: 
-        - IndexName: dateTimeCreationIndex
+        - IndexName: cityIndex
           KeySchema: 
             - AttributeName: country
               KeyType: HASH
-            - AttributeName: dateTimeCreation
+            - AttributeName: city
               KeyType: RANGE
           Projection:
              ProjectionType: ALL 
