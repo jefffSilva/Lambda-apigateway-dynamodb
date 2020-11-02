@@ -16,7 +16,7 @@ Resources:
   CreateTripsRecordFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://test-lambda-jeff/9e81b34d1416ddcddf2479320a407dda
+      CodeUri: s3://test-lambda-jeff/c1dc9b1856b4227fa52fdb70fd0348ff
       Handler: br.com.iwe.handler.CreateTripsRecord::handleRequest
       Runtime: java8
       Policies:
@@ -32,7 +32,7 @@ Resources:
   GettripsRecordsByPeriodFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://test-lambda-jeff/9e81b34d1416ddcddf2479320a407dda
+      CodeUri: s3://test-lambda-jeff/c1dc9b1856b4227fa52fdb70fd0348ff
       Handler: br.com.iwe.handler.GettripsRecordsByPeriod::handleRequest
       Runtime: java8
       Policies:
@@ -51,7 +51,7 @@ Resources:
   GetTripsRecordsByCityFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://test-lambda-jeff/9e81b34d1416ddcddf2479320a407dda
+      CodeUri: s3://test-lambda-jeff/c1dc9b1856b4227fa52fdb70fd0348ff
       Handler: br.com.iwe.handler.GetTripsRecordsByCity::handleRequest
       Runtime: java8
       Policies:
@@ -69,7 +69,7 @@ Resources:
   GettripsRecordsByIsConsumedFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://test-lambda-jeff/9e81b34d1416ddcddf2479320a407dda
+      CodeUri: s3://test-lambda-jeff/c1dc9b1856b4227fa52fdb70fd0348ff
       Handler: br.com.iwe.handler.GettripsRecordsByIsConsumed::handleRequest
       Runtime: java8
       Policies:
