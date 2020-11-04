@@ -14,7 +14,7 @@ Resources:
   CreateTripsRecordFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://22cld-rm338220-renan-miranda/7eaf443d19c42e328f1f908769c55a42
+      CodeUri: s3://test-lambda-jeff/8ea566668e6ef54bcbbcb240cc6d5f4f
       Handler: br.com.iwe.handler.CreateTripsRecord::handleRequest
       Runtime: java8
       Policies:
@@ -30,7 +30,7 @@ Resources:
   GetTripsRecordsByCityFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://22cld-rm338220-renan-miranda/7eaf443d19c42e328f1f908769c55a42
+      CodeUri: s3://test-lambda-jeff/8ea566668e6ef54bcbbcb240cc6d5f4f
       Handler: br.com.iwe.handler.GetTripsRecordsByCity::handleRequest
       Runtime: java8
       Policies:
@@ -48,7 +48,7 @@ Resources:
   GetTripsRecordsByCountryFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://22cld-rm338220-renan-miranda/7eaf443d19c42e328f1f908769c55a42
+      CodeUri: s3://test-lambda-jeff/8ea566668e6ef54bcbbcb240cc6d5f4f
       Handler: br.com.iwe.handler.GetTripsRecordsByCountry::handleRequest
       Runtime: java8
       Policies:
