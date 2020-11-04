@@ -8,12 +8,13 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
+
 import br.com.iwe.model.Trips;
 
 public class TripsRepository {
 
 	private static final DynamoDBMapper mapper = DynamoDBManager.mapper();
-
+	
 	public Trips save(final Trips trips) {
 		mapper.save(trips);
 		return trips;
@@ -26,10 +27,27 @@ public class TripsRepository {
 		eav.put(":val2", new AttributeValue().withS(city));
 
 		final DynamoDBQueryExpression<Trips> queryExpression = new DynamoDBQueryExpression<Trips>()
+				.withIndexName("cityIndex").withConsistentRead(false)
 				.withKeyConditionExpression("country = :val1 and city=:val2").withExpressionAttributeValues(eav);
 
-		final List<Trips> studies = mapper.query(Trips.class, queryExpression);
+		final List<Trips> viagens = mapper.query(Trips.class, queryExpression);
 
-		return studies;
+		return viagens;
 	}
+	
+	public List<Trips> findByCountry(final String country) {
+
+		final Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
+		eav.put(":val1", new AttributeValue().withS(country));
+		
+
+		final DynamoDBQueryExpression<Trips> queryExpression = new DynamoDBQueryExpression<Trips>()
+				.withIndexName("cityIndex").withConsistentRead(false)
+				.withKeyConditionExpression("country = :val1").withExpressionAttributeValues(eav);
+
+		final List<Trips> viagens = mapper.query(Trips.class, queryExpression);
+
+		return viagens;
+	}
+	
 }

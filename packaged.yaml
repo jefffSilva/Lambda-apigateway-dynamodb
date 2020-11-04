@@ -14,7 +14,7 @@ Resources:
   CreateTripsRecordFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://22cld-rm338220-renan-miranda/7a691b4a1795081a5f8749ff2edd4473
+      CodeUri: s3://22cld-rm338220-renan-miranda/7eaf443d19c42e328f1f908769c55a42
       Handler: br.com.iwe.handler.CreateTripsRecord::handleRequest
       Runtime: java8
       Policies:
@@ -30,7 +30,7 @@ Resources:
   GetTripsRecordsByCityFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://22cld-rm338220-renan-miranda/7a691b4a1795081a5f8749ff2edd4473
+      CodeUri: s3://22cld-rm338220-renan-miranda/7eaf443d19c42e328f1f908769c55a42
       Handler: br.com.iwe.handler.GetTripsRecordsByCity::handleRequest
       Runtime: java8
       Policies:
@@ -45,14 +45,30 @@ Resources:
             Method: get
             RequestParameters:
             - method.request.querystring.city
+  GetTripsRecordsByCountryFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://22cld-rm338220-renan-miranda/7eaf443d19c42e328f1f908769c55a42
+      Handler: br.com.iwe.handler.GetTripsRecordsByCountry::handleRequest
+      Runtime: java8
+      Policies:
+      - DynamoDBCrudPolicy:
+          TableName:
+            Ref: tripsTable
+      Events:
+        GetTripsRecordsByCountry:
+          Type: Api
+          Properties:
+            Path: /trips/{country}
+            Method: get
+            RequestParameters:
+            - method.request.querystring.country
   tripsTable:
     Type: AWS::DynamoDB::Table
     Properties:
       TableName: trips
       AttributeDefinitions:
       - AttributeName: country
-        AttributeType: S
-      - AttributeName: dateTimeCreation
         AttributeType: S
       - AttributeName: city
         AttributeType: S
@@ -66,7 +82,7 @@ Resources:
         KeySchema:
         - AttributeName: country
           KeyType: HASH
-        - AttributeName: dateTimeCreation
+        - AttributeName: city
           KeyType: RANGE
         Projection:
           ProjectionType: ALL
