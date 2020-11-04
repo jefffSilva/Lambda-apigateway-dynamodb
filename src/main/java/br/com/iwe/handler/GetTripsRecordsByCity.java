@@ -22,12 +22,12 @@ public class GetTripsRecordsByCity implements RequestHandler<HandlerRequest, Han
 
 		context.getLogger().log("Searching for registered cities for " + country + " and city equals " + city);
 
-		final List<Trips> studies = this.repository.findByCity(country, city);
+		final List<Trips> viagens = this.repository.findByCity(country, city);
 
-		if (studies == null || studies.isEmpty()) {
+		if (viagens == null || viagens.isEmpty()) {
 			return HandlerResponse.builder().setStatusCode(404).build();
 		}
 
-		return HandlerResponse.builder().setStatusCode(200).setObjectBody(studies).build();
+		return HandlerResponse.builder().setStatusCode(200).setObjectBody(viagens).build();
 	}
 }

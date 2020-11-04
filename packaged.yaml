@@ -1,8 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: 'trips Rest API to manage a Data Lake of trips links
-
-  '
+Description: "trips Rest API to manage trips \n"
 Globals:
   Function:
     Timeout: 20
@@ -16,7 +14,7 @@ Resources:
   CreateTripsRecordFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://test-lambda-jeff/c1dc9b1856b4227fa52fdb70fd0348ff
+      CodeUri: s3://22cld-rm338220-renan-miranda/7a691b4a1795081a5f8749ff2edd4473
       Handler: br.com.iwe.handler.CreateTripsRecord::handleRequest
       Runtime: java8
       Policies:
@@ -29,29 +27,10 @@ Resources:
           Properties:
             Path: /trips
             Method: post
-  GettripsRecordsByPeriodFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: s3://test-lambda-jeff/c1dc9b1856b4227fa52fdb70fd0348ff
-      Handler: br.com.iwe.handler.GettripsRecordsByPeriod::handleRequest
-      Runtime: java8
-      Policies:
-      - DynamoDBCrudPolicy:
-          TableName:
-            Ref: tripsTable
-      Events:
-        GettripsRecordsByPeriod:
-          Type: Api
-          Properties:
-            Path: /trips/{country}/findByPeriod
-            Method: get
-            RequestParameters:
-            - method.request.querystring.starts
-            - method.request.querystring.ends
   GetTripsRecordsByCityFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://test-lambda-jeff/c1dc9b1856b4227fa52fdb70fd0348ff
+      CodeUri: s3://22cld-rm338220-renan-miranda/7a691b4a1795081a5f8749ff2edd4473
       Handler: br.com.iwe.handler.GetTripsRecordsByCity::handleRequest
       Runtime: java8
       Policies:
@@ -66,24 +45,6 @@ Resources:
             Method: get
             RequestParameters:
             - method.request.querystring.city
-  GettripsRecordsByIsConsumedFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: s3://test-lambda-jeff/c1dc9b1856b4227fa52fdb70fd0348ff
-      Handler: br.com.iwe.handler.GettripsRecordsByIsConsumed::handleRequest
-      Runtime: java8
-      Policies:
-      - DynamoDBCrudPolicy:
-          TableName:
-            Ref: tripsTable
-      Events:
-        GettripsRecordsByIsConsumed:
-          Type: Api
-          Properties:
-            Path: /trips/{country}/findByIsConsumed
-            Method: get
-            RequestParameters:
-            - method.request.querystring.isconsumed
   tripsTable:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -95,27 +56,17 @@ Resources:
         AttributeType: S
       - AttributeName: city
         AttributeType: S
-      - AttributeName: consumed
-        AttributeType: S
       KeySchema:
       - AttributeName: country
         KeyType: HASH
       - AttributeName: city
         KeyType: RANGE
       LocalSecondaryIndexes:
-      - IndexName: dateTimeCreationIndex
+      - IndexName: cityIndex
         KeySchema:
         - AttributeName: country
           KeyType: HASH
         - AttributeName: dateTimeCreation
-          KeyType: RANGE
-        Projection:
-          ProjectionType: ALL
-      - IndexName: consumedIndex
-        KeySchema:
-        - AttributeName: country
-          KeyType: HASH
-        - AttributeName: consumed
           KeyType: RANGE
         Projection:
           ProjectionType: ALL
@@ -127,21 +78,9 @@ Outputs:
       Fn::GetAtt:
       - CreateTripsRecordFunction
       - Arn
-  GettripsRecordsByPeriodFunction:
-    Description: GettripsRecordsByPeriod Lambda Function ARN
-    Value:
-      Fn::GetAtt:
-      - GettripsRecordsByPeriodFunction
-      - Arn
   GetTripsRecordsByCityFunction:
     Description: GetTripsRecordsByCity Lambda Function ARN
     Value:
       Fn::GetAtt:
       - GetTripsRecordsByCityFunction
-      - Arn
-  GettripsRecordsByIsConsumedFunction:
-    Description: GettripsRecordsByIsConsumed Lambda Function ARN
-    Value:
-      Fn::GetAtt:
-      - GettripsRecordsByIsConsumedFunction
       - Arn

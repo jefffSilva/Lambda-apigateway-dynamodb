@@ -14,25 +14,26 @@ public class Trips {
 	@DynamoDBRangeKey(attributeName = "city")
 	private String city;
 
-	@DynamoDBIndexRangeKey(attributeName = "dateTimeCreation", localSecondaryIndexName = "dateTimeCreationIndex")
-	private String dateTimeCreation;
+	@DynamoDBIndexRangeKey(attributeName = "date", localSecondaryIndexName = "dateIndex")
+	private String date;
 
-	@DynamoDBAttribute(attributeName = "url")
-	private String url;
-	@DynamoDBAttribute(attributeName = "description")
-	private String description;
+	@DynamoDBAttribute(attributeName = "reason")
+	private String reason;
+	
+//	@DynamoDBAttribute(attributeName = "description")
+//	private String description;
 
-	@DynamoDBIndexRangeKey(attributeName = "consumed", localSecondaryIndexName = "consumedIndex")
-	private String consumed;
+//	@DynamoDBIndexRangeKey(attributeName = "consumed", localSecondaryIndexName = "consumedIndex")
+//	private String consumed;
 
-	public Trips(String country, String dateTimeCreation, String city, String url, String description, String consumed) {
+	public Trips(String country, String date, String city, String reason) {
 		super();
 		this.country = country;
-		this.dateTimeCreation = dateTimeCreation;
+		this.date = date;
 		this.city = city;
-		this.url = url;
-		this.description = description;
-		this.consumed = consumed;
+		this.reason = reason;
+		//this.description = description;
+//		this.consumed = consumed;
 	}
 
 	public Trips() {
@@ -47,12 +48,12 @@ public class Trips {
 		this.country = country;
 	}
 
-	public String getDateTimeCreation() {
-		return dateTimeCreation;
+	public String getDate() {
+		return date;
 	}
 
-	public void setDateTimeCreation(String dateTimeCreation) {
-		this.dateTimeCreation = dateTimeCreation;
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 	public String getCity() {
@@ -63,28 +64,28 @@ public class Trips {
 		this.city = city;
 	}
 
-	public String getUrl() {
-		return url;
+	public String getReason() {
+		return reason;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setReason(String reason) {
+		this.reason = reason;
 	}
 
-	public String getDescription() {
-		return description;
-	}
+//	public String getDescription() {
+//		return description;
+//	}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+//	public void setDescription(String description) {
+//		this.description = description;
+//	}
 
-	public String getConsumed() {
-		return consumed;
-	}
+//	public String getConsumed() {
+//		return consumed;
+//	}
 
-	public void setConsumed(String consumed) {
-		this.consumed = consumed;
-	}
+//	public void setConsumed(String consumed) {
+//		this.consumed = consumed;
+//	}
 
 }
